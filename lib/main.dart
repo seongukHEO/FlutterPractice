@@ -1,76 +1,58 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+
+class MyApp extends StatefulWidget {
+  MyApp({super.key});
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  var a = [0, 0, 0];
+  var name = ['허성욱', '계림 공쥬', '페페'];
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        appBar: AppBar(
-          title: Text("금호동 3가",
-              style: TextStyle(
-                fontWeight: FontWeight.bold
-              )
-          ),
-          actions: [
-            Row(
-              children: [
-                Icon(Icons.search),
-                Icon(Icons.menu),
-                Icon(Icons.add_alert_rounded)
-              ],
-            )
-          ],
-          
-          
-        ),
-        
-        
-        body: Container(
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Flexible(child: Container(
-                padding: EdgeInsets.all(15),
-                child: (
-                    Image.asset('kk_124.png')
-                ),
+        appBar: AppBar(title: Text("연락처앱"),),
+        body: ListView.builder(
+          itemCount: 3,
+            itemBuilder: (c, i){
+            return ListTile(
+              leading: Text(a[i].toString()),
+              title: Text(name[i]),
+              trailing: ElevatedButton(
+                child: Text("좋아요"),
+                onPressed: (){
+                  setState(() {
+                    a[i]++;
+                  });
+                },
               ),
-                flex: 3,
-              ),
-
-              Flexible(child: Container(
-                margin: EdgeInsets.fromLTRB(0, 15, 0, 0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text("DietMoney", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),),
-                    Text("능곡로 69 끌올 100년전", style: TextStyle(color: Colors.grey),),
-                    Text('100.000.000.000원', style: TextStyle(fontWeight: FontWeight.bold),),
-                    Container(
-                      width: 200,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          Icon(Icons.favorite_border),
-                          Text("4")
-                        ],
-                      ),
-                    )
-                  ],
-                ),
-              ),
-                flex: 7,
-              )
-            ],
-          ),
-        ),
+            );
+            }
+        )
       ),
+    );
+  }
+}
+
+
+
+//그니까 이건 안드로이드에서 함수 나누기? 뭐 그런 셈이지
+class ShopItem extends StatelessWidget {
+  const ShopItem({super.key});
+
+  @override
+  build(context) {
+    return SizedBox(
+      child: Text("gk"),
     );
   }
 }
